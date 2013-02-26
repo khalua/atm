@@ -1,0 +1,18 @@
+%h1 Bank
+
+%h3 Starting balance:
+#total_balance
+
+%p
+%h4 Checking Balance:
+.check_bal checking balance:
+.check_input= text_field_tag 'check_edit'
+= submit_tag 'deposit', :id => 'check_add'
+= submit_tag 'withdrawal', :id => 'check_minus'
+%p
+
+%h4 Savings Balance:
+.sav_bal savings balance:
+.sav_input= text_field_tag 'sav_edit'
+= submit_tag 'deposit', :id => 'sav_add'
+= submit_tag 'withdrawal', :id => 'sav_minus'
