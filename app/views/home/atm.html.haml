@@ -1,0 +1,23 @@
+%h1 ATM
+
+#atm
+  #screen
+    %h3 Total balance:
+    #total_balance
+    %h4 Checking balance:
+    .checking_balance_output checking balance:
+    %h4 Savings Balance:
+    .savings_balance_output savings balance:
+    .alert
+
+  .checking_panel
+    %h4 Checking
+    .check_input= text_field_tag 'check_edit'
+    = submit_tag 'deposit', :id => 'check_add'
+    = submit_tag 'withdrawal', :id => 'check_minus'
+
+  .savings_panel
+    %h4 Savings
+    .sav_input= text_field_tag 'sav_edit'
+    = submit_tag 'deposit', :id => 'sav_add'
+    = submit_tag 'withdrawal', :id => 'sav_minus'

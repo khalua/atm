@@ -32,6 +32,10 @@ function update_checking_balance_display(checking_balance)
 
 function update_savings_balance_display(savings_balance)
 {
+  if (savings_balance === 0)
+  {
+    $('.savings_balance_output').addClass("zero");
+  }
   $('.savings_balance_output').text(savings_balance);
   global_balance();
 }
@@ -70,6 +74,7 @@ function minus_to_check(amount)
     else
       {
         $('.alert').text("insufficient funds homie");
+        $('.alert').addClass("zero")
       }
   }
 }
@@ -78,15 +83,22 @@ function add_to_savings(amount)
 {
   amount = parseInt($('#sav_edit').val());
   savings_balance += amount;
-  global_balance();
-  $('.savings_balance_output').text(savings_balance);
+  update_savings_balance_display(savings_balance);
 }
 
 function minus_to_savings(amount)
 {
   amount = parseInt($('#sav_edit').val());
-  savings_balance -= amount;
-  global_balance();
-  $('.savings_balance_output').text(savings_balance);
+  if (amount <= savings_balance)
+  {
+    savings_balance -= amount;
+    update_savings_balance_display(savings_balance);
+  }
+  else
+  {
+    $('.alert').text("insufficient funds homie");
+    $('.alert').addClass("zero")
+  }
+
 }
 
