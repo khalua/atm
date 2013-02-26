@@ -74,7 +74,7 @@ function minus_to_check(amount)
     else
       {
         $('.alert').text("insufficient funds homie");
-        $('.alert').addClass("zero")
+        $('.alert').addClass("zero");
       }
   }
 }
@@ -99,6 +99,5 @@ function minus_to_savings(amount)
     $('.alert').text("insufficient funds homie");
     $('.alert').addClass("zero")
   }
-
 }
 

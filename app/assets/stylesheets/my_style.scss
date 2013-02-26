@@ -2,7 +2,7 @@
 @import url(http://meyerweb.com/eric/tools/css/reset/reset.css);
 
 body {
-  background: url('white_wall.png');
+  background-color: black;
 
 }
 
@@ -13,6 +13,7 @@ body {
 h1 {
   font-size: 100px;
   margin-left: 40px;
+  color: white;
 }
 #machine {
   text-align: center;
@@ -30,15 +31,18 @@ h1 {
 }
 
 #atm {
-  height: 600px;
-  width: 800px;
-  background: url('white_wall.png');
+    background: url('white_wall.png');
+    height: 600px;
+    width: 500px;
+    border: 3px solid black;
+    border-radius: 10px;
+    margin: 10px 0 100px 30px;
 
   .checking_panel, .savings_panel {
     display: inline-block;
     padding: 30px;
     border: solid 1px black;
-    margin: 10px 0 20px 30px;
+    margin: 10px 0 100px 30px;
 
   }
 }
@@ -49,6 +53,7 @@ h1 {
   line-height: 40px;
   height: 300px;
   width: 400px;
+  border: 5px solid grey;
   border-radius: 10px;
   padding-top: 30px;
   background-color: black;
