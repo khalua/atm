@@ -1,7 +1,9 @@
 $(function() {
+  //initialize the display
   $('#total_balance').text(global_balance);
-  $('.check_bal').text(checking_balance);
-  $('.sav_bal').text(savings_balance);
+  $('.checking_balance_output').text(checking_balance);
+  $('.savings_balance_output').text(savings_balance);
+  //buttons
   $('#check_add').click(add_to_check);
   $('#check_minus').click(minus_to_check);
   $('#sav_add').click(add_to_savings);
@@ -18,20 +20,58 @@ function global_balance()
   $('#total_balance').text(checking_balance + savings_balance);
 }
 
+function update_checking_balance_display(checking_balance)
+{
+  if (checking_balance === 0)
+  {
+    $('.checking_balance_output').addClass("zero");
+  }
+  $('.checking_balance_output').text(checking_balance);
+  global_balance();
+}
+
+function update_savings_balance_display(savings_balance)
+{
+  $('.savings_balance_output').text(savings_balance);
+  global_balance();
+}
+
+
 function add_to_check(amount)
 {
   amount = parseInt($('#check_edit').val());
   checking_balance += amount;
-  global_balance();
-  $('.check_bal').text(checking_balance);
+  update_checking_balance_display(checking_balance);
 }
 
 function minus_to_check(amount)
 {
   amount = parseInt($('#check_edit').val());
-  checking_balance -= amount;
-  global_balance();
-  $('.check_bal').text(checking_balance);
+  if(amount <= checking_balance)
+  {
+    checking_balance -= amount;
+    update_checking_balance_display(checking_balance);
+  }
+  else
+  {
+    if(amount <= savings_balance && checking_balance >= 0)
+      {
+        savings_balance += checking_balance;
+        checking_balance = 0;
+        update_checking_balance_display(checking_balance);
+        savings_balance -= amount;
+        update_savings_balance_display(savings_balance);
+      }
+    else if (amount <= savings_balance)
+      {
+        savings_balance -= amount;
+        update_savings_balance_display(savings_balance);
+      }
+    else
+      {
+        $('.alert').text("insufficient funds homie");
+      }
+  }
 }
 
 function add_to_savings(amount)
@@ -39,7 +79,7 @@ function add_to_savings(amount)
   amount = parseInt($('#sav_edit').val());
   savings_balance += amount;
   global_balance();
-  $('.sav_bal').text(savings_balance);
+  $('.savings_balance_output').text(savings_balance);
 }
 
 function minus_to_savings(amount)
@@ -47,6 +87,6 @@ function minus_to_savings(amount)
   amount = parseInt($('#sav_edit').val());
   savings_balance -= amount;
   global_balance();
-  $('.sav_bal').text(savings_balance);
+  $('.savings_balance_output').text(savings_balance);
 }
 
